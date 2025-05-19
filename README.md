@@ -56,7 +56,7 @@ GET /users/{id}/notifications
 ### 1. Clone the Repository
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/im-ShivamSaurav/notification-system
 cd notification-service
 ```
 
