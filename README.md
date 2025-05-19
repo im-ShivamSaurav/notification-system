@@ -148,7 +148,7 @@ curl http://localhost:5000/users/test@example.com/notifications
 
 ## 📦 Folder Structure
 
-\`\`\`
+```
 notification-service/
 ├── src/
 │   ├── controllers/
@@ -160,7 +160,7 @@ notification-service/
 ├── .gitignore
 ├── README.md
 └── package.json
-\`\`\`
+```
 
 ---
 
