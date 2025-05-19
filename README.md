@@ -29,25 +29,25 @@ A simple Node.js-based notification service to send **Email**, **SMS**, and **In
 ## 📂 API Endpoints
 
 ### 1. Send a Notification
-\`\`\`
+```
 POST /notifications
-\`\`\`
+```
 
 #### Request Body:
-\`\`\`json
+```json
 {
   "userIds": ["user@example.com" or "+91XXXXXXXXXX"],
   "type": "email" | "sms" | "in-app",
   "title": "Your Title",
   "message": "Your Message"
 }
-\`\`\`
+```
 
 ### 2. Get User Notifications
-\`\`\`
+```
 GET /users/{id}/notifications
-\`\`\`
-- \`id\` can be the email or phone number used to identify the user.
+```
+- `id` can be the email or phone number used to identify the user.
 
 ---
 
@@ -55,22 +55,22 @@ GET /users/{id}/notifications
 
 ### 1. Clone the Repository
 
-\`\`\`bash
+```bash
 git clone <your-repo-url>
 cd notification-service
-\`\`\`
+```
 
 ### 2. Install Dependencies
 
-\`\`\`bash
+```bash
 npm install
-\`\`\`
+```
 
 ### 3. Set Up Environment Variables
 
-Create a \`.env\` file in the root directory:
+Create a `.env` file in the root directory:
 
-\`\`\`env
+```env
 PORT=5000
 MONGO_URI=mongodb://localhost:27017/notifications
 
@@ -86,7 +86,7 @@ TWILIO_PHONE=+1234567890
 # RabbitMQ config
 RABBITMQ_URL=amqp://localhost
 USE_QUEUE=false
-\`\`\`
+```
 
 > ℹ️ **Note**: To send emails using Gmail, enable 2FA and use an app password.
 
@@ -94,36 +94,36 @@ USE_QUEUE=false
 
 Ensure MongoDB is running locally or provide an Atlas connection URI.
 
-\`\`\`bash
+```bash
 # For local MongoDB
 mongod
-\`\`\`
+```
 
 ### 5. Run the Server
 
-\`\`\`bash
+```bash
 npm start
-\`\`\`
+```
 
 ### 6. (Optional) Start Queue Consumer
 
-If \`USE_QUEUE=true\`, run:
+If `USE_QUEUE=true`, run:
 
-\`\`\`bash
+```bash
 node src/queues/consumer.js
-\`\`\`
+```
 
 ---
 
 ## 🧾 Assumptions Made
 
-- \`userId\` is assumed to be either:
+- `userId` is assumed to be either:
   - Email (for email + in-app notifications)
   - Phone number in international format (for SMS)
 - Notification types are only:
-  - \`"email"\` for Email via SMTP
-  - \`"sms"\` for SMS via Twilio
-  - \`"in-app"\` for internal storage only (no third-party sending)
+  - `"email"` for Email via SMTP
+  - `"sms"` for SMS via Twilio
+  - `"in-app"` for internal storage only (no third-party sending)
 - SMTP uses Gmail's service via Nodemailer
 - No authentication or rate limiting is implemented (to keep the scope simple)
 - Queueing with RabbitMQ is optional but ready to plug and play
@@ -133,16 +133,16 @@ node src/queues/consumer.js
 ## 📎 Sample Requests (Postman or curl)
 
 ### Send Email Notification:
-\`\`\`bash
+```bash
 curl -X POST http://localhost:5000/notifications \\
   -H "Content-Type: application/json" \\
   -d '{"userIds":["test@example.com"],"type":"email","title":"Hello","message":"Welcome!"}'
-\`\`\`
+```
 
 ### Get Notifications:
-\`\`\`bash
+```bash
 curl http://localhost:5000/users/test@example.com/notifications
-\`\`\`
+```
 
 ---
 
